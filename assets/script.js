@@ -1,6 +1,5 @@
 var searchBox = document.querySelector('#searchBox');
 var searchForm = document.querySelector('#search');
-var history = document.querySelector('#history');
 var today = document.querySelector('#today');
 var forecast = document.querySelector('#fiveDay');
 
@@ -8,9 +7,50 @@ const apiKey = '2db3a9423ac69ac536e99fac81ac089f';
 // var currentTime = moment().format('MM/Do/YY');
 var searchHist = JSON.parse(localStorage.getItem("searchHist")) || [];
 
-function renderSearchHist() {
-  
+function handleReSearch(event) {
+  var searchTerm = event.target.textContent || event.target.value;
+  searchBox.value = searchTerm;
+  handleSearchBtn(event);
 }
+
+function renderSearchHist() {
+  var history = document.querySelector('#history');
+  var listEl = document.createElement('ul');
+
+  // Remove existing search history elements
+  while(history.firstChild){
+    history.removeChild(history.firstChild);
+  }
+  
+  listEl.setAttribute('style', 'list-style-type: none');
+  
+  searchHist.forEach( item => {
+    var listItemEl = document.createElement('li');
+    var listItemCardEl = document.createElement('div');
+    var listItemCardBodyEl = document.createElement('div');
+    var listItemCardTextEl = document.createElement('p');
+
+    listItemCardEl.setAttribute('class', 'card');
+    listItemCardBodyEl.setAttribute('class', 'card-body');
+    listItemCardTextEl.setAttribute('class', 'card-text');
+
+    listItemCardEl.setAttribute('value', item);
+
+    listItemCardEl.addEventListener('click', event => handleReSearch(event));
+
+    listItemCardTextEl.textContent = item;
+
+    listItemCardBodyEl.appendChild(listItemCardTextEl);
+    listItemCardEl.appendChild(listItemCardBodyEl);
+    listItemEl.appendChild(listItemCardEl);
+
+    listEl.appendChild(listItemEl);
+  })
+
+  history.appendChild(listEl);
+}
+
+renderSearchHist();
 
 function handleSearchBtn(event) {
   event.preventDefault();
