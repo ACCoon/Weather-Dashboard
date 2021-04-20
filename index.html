@@ -15,11 +15,11 @@
   <h1 class="bg-dark text-light text-center p-3">Weather Dashboard</h1>
   <div class="row">
     <div class="col-3 pl-4 h-100 sidebar">
-
-      <form class="search">
+      
+      <form id="search">
         <h4>Search for a city:</h4>
-        <input type="text" placeholder="Search..." />
-        <button type="submit" id="submitBtn" class="btn-primary">&#x1F50D;</button>
+        <input type="text" id="searchBox" placeholder="Search..." />
+        <button type="submit" class="btn-primary">&#x1F50D;</button>
       </form>
 
       <div id="history">
@@ -32,11 +32,10 @@
       <!-- Today's Weather Data -->
       <div class="card w-100" id="today" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title" id="todayDate"></h5>
-          <p class="card-text" id="todayTemp"></p>
-          <p class="card-text" id="todayHumid"></p>
-          <p class="card-text" id="todayWind"></p>
-          <p class="card-text" id="todayUV"></p>
+          <h5 class="card-title" ></h5>
+          <p class="card-text" ></p>
+          <p class="card-text" ></p>
+          <p class="card-text" ></p>
         </div>
       </div>
 
